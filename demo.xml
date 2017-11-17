@@ -1,0 +1,84 @@
+<openerp>
+  <data>
+    <!-- FORM VIEW OF EMPLOYEE -->
+    <record name="view_empl_form_8" model="ir.ui.views">
+      <field name="name">view.empl.form.8</field>
+      <field name="model">employee.employee.8</field>
+      <field name="arch" type="xml">
+        <form string="Employee">
+          <group>
+            <h1>
+              <field name="name"/>
+            </h1>
+            </br>
+          </group>
+
+          <!--
+          colspan="4" 4 grid e bölünmüş aşağısı demek
+          biz col="4" dediğimizde bu bölünmüş alana 4 eleman
+          yerleştir manasına geliyor ( name, name field, age, age field)
+          -->
+          <group colspan="4" col="4">
+            <field name="age"/>
+            <field name="active"/>
+            <field name="bdate"/>
+            <field name="jdate"/>
+            <field name="basic"/>
+            <field name="gender"/>
+          </group>
+
+          <separator string="Template" rolspan="4"/>
+          <field name="template" nolabel="1"/>
+          <separator string="Notes" colspan="4"/>
+          <field name="notes" nolabel="1"/>
+        </form>
+      </field>
+    </record>
+
+
+
+    <!-- TREE VIEW OF EMPLOYEE  -->
+    <!--
+    ** name user identifier iken id tecnical identifier dır
+    ** Her zaman tree view da olduğunca az field göster bunun
+    amacı tree nin mantığından geliyo sonuçda biz sadece bilgileri
+    listelemek istiyoruz
+    ** Eğer <tree editable="True" dersem aşağıdaki field ları form
+    view da açmadan hızlıca editleyebilirim
+    -->
+    <record id="view_empl_tree_8" model="ir.ui.view">
+      <field name="name">view.empl.tree</field>
+      <field name="model">empleyee.employee.8</field>
+      <field name="arch" type="xml">
+        <tree string="Employee">
+          <field name="name"/>
+          <field name="age"/>
+          <field name="active"/>
+          <field name="bdate"/>
+          <field name="jdate"/>
+          <field name="basic"/>
+        </tree>
+      </field>
+
+    </record>
+
+
+    <!-- ACTION OF EMPLOYEE -->
+    <!--
+    model = "ir.actions.act_window bu eşitliği herzaman yapıcaz
+    çünkü kullanıcı tarafında action gerçekleştirmemizi sağlayacak
+    bir triger bu triger bir view tetikleyecek"
+    -->
+    <record id="action_employee_employee_8" model="ir.actions.act_window">
+      <field name="name">employee</field>
+      <field name="res_model">employee.employee.8</field>
+      <field name="view_type">form</field>
+      <field name="view_model">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_main_8" name="HR_8"/>
+    <menuitem id="menu_hr_8" name="Human Resource" parent="menu_main_8"/>
+    <menuitem id="menu_employee_8"  action="action_employee_employee_8" parent="menu_hr_8"/>
+  </data>
+</openerp>
